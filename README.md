@@ -165,7 +165,7 @@ Example request:
     }
   ]
 }
-![image](https://github.com/TVSRIDURGA/bulk-certificate-generator/blob/27c88cafe212c44ea9d6414d79fd1eebecb24632/Screenshot%202026-10-07%20214300.png)
+![image](https://github.com/TVSRIDURGA/bulk-certificate-generator/blob/27c88cafe212c44ea9d6414d79fd1eebecb24632/Screenshot%202026-10-07%20214300.png?raw=true)
 
 
 
