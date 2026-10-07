@@ -165,7 +165,136 @@ Example request:
     }
   ]
 }
-![image](https://github.com/TVSRIDURGA/bulk-certificate-generator/blob/27c88cafe212c44ea9d6414d79fd1eebecb24632/Screenshot%202026-10-07%20214300.png?raw=true)
+
+Example response:
+{
+  "message": "Generation job created successfully",
+  "job_id": 1,
+  "event_name": "Python Workshop",
+  "total": 2,
+  "successful": 0,
+  "failed": 0,
+  "status": "PENDING"
+}
+
+
+2. Get Job Status
+GET /api/jobs/{job_id}
+
+Example:
+GET /api/jobs/1
+
+Example response:
+{
+  "job_id": 1,
+  "event_name": "Python Workshop",
+  "status": "COMPLETED",
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+
+3. Retrieve Generated Certificate
+
+GET /api/certificates/{certificate_id}
+
+Example:
+GET /api/certificates/1
+
+The API returns the generated certificate as a PDF file.
+Running the Project
+1. Clone the repository
+git clone https://github.com/TVSRIDURGA/bulk-certificate-generator.git
+cd bulk-certificate-generator
+
+2. Create a virtual environment
+Windows:
+python -m venv venv
+
+Activate it:
+venv\Scripts\activate
+
+3. Install dependencies
+pip install -r requirements.txt
+
+4. Start the server
+uvicorn main:app --reload
+
+The API will be available at:
+http://127.0.0.1:8000
+
+Interactive Swagger documentation:
+http://127.0.0.1:8000/docs
+
+Testing
+The project includes automated tests covering:
+- API health check
+- Bulk job creation
+- Invalid email validation
+- Certificate generation
+- Job status tracking
+- Certificate retrieval
+- Individual certificate failure handling
+Run the tests using:
+python -m pytest
+
+Current test result:
+7 passed
+
+Design Decisions
+Why FastAPI?
+FastAPI provides:
+- Simple API development
+- Automatic request validation using Pydantic
+- Interactive Swagger documentation
+- Easy background task support
+- Good support for building backend services
+Why SQLite?
+SQLite was selected because this assignment focuses on backend functionality and certificate generation. It provides a simple relational database without requiring an external database server.
+For a production deployment, PostgreSQL or another production-grade relational database could be used.
+Why BackgroundTasks?
+Certificate generation can involve multiple PDF operations, so it is separated from the immediate API response using FastAPI BackgroundTasks.
+This allows the API to create the job and return its job ID while processing continues in the background.
+For a larger production system, a durable task queue such as Celery or another distributed job-processing system could be considered.
+Why Individual Certificate Records?
+Each recipient has a separate certificate record.
+This allows the system to independently track:
+- Certificate status
+- Generated file path
+- Error message
+It also allows one failed certificate to be recorded without stopping successful certificates.
+Error Handling
+The API handles:
+- Invalid email addresses through Pydantic validation
+- Non-existent jobs with a 404 response
+- Non-existent certificates with a 404 response
+- Certificates that are not yet available with a 400 response
+- Individual certificate generation failures without stopping the entire job
+Future Improvements
+Possible improvements for a production version include:
+- PostgreSQL instead of SQLite
+- Celery or another distributed task queue
+- Redis for task coordination or caching
+- Authentication and authorization
+- Cloud object storage for generated certificates
+- Email delivery of certificates
+- Retry mechanisms for failed certificates
+- More advanced certificate templates
+- Monitoring and logging
+- Pagination for large job histories
+- Deployment using Docker and cloud infrastructure
+Learning Outcomes
+Through this project, I gained practical experience with:
+- FastAPI backend development
+- REST API design
+- Pydantic validation
+- SQLAlchemy ORM
+- Relational database design
+- Background task processing
+- PDF generation
+- Error handling
+- Automated API testing
+- Git and GitHub workflow
 
 
 
