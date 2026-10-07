@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Bulk Certificate Generator API
 
 A backend service built with FastAPI that accepts a bulk list of certificate recipients, generates PDF certificates using a predefined template, tracks generation progress, handles individual failures, and provides an API to retrieve generated certificates.
@@ -43,3 +44,6 @@ bulk-certificate-generator/
 │
 └── tests/
     └── test_api.py
+=======
+# bulk-certificate-generator
+>>>>>>> f7b54bbe590fcb6cbecc98c99caca15d6db3fe52
