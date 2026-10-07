@@ -1,0 +1,21 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Test cache
+.pytest_cache/
+
+# Generated certificate files
+generated_certificates/
+
+# Local database
+certificates.db
+
+# Environment variables
+.env
+
+# VS Code settings
+.vscode/
